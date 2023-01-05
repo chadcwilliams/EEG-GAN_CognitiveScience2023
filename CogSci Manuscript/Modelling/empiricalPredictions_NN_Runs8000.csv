@@ -313,3 +313,38 @@
 100,2,0,73,95.19511938095093,{'activation': 'relu', 'alpha': 0.0001, 'hidden_layer_sizes': (25, 25), 'learning_rate': 'constant', 'max_iter': 5000, 'solver': 'sgd'}
 100,3,0,69,91.90651035308838,{'activation': 'relu', 'alpha': 0.05, 'hidden_layer_sizes': (50, 25, 50), 'learning_rate': 'adaptive', 'max_iter': 10000, 'solver': 'adam'}
 100,4,0,63,92.38389992713928,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (50,), 'learning_rate': 'adaptive', 'max_iter': 5000, 'solver': 'sgd'}
+005,0,0,55,256.372948884964,{'activation': 'tanh', 'alpha': 0.05, 'hidden_layer_sizes': (25, 25), 'learning_rate': 'invscaling', 'max_iter': 10000, 'solver': 'sgd'}
+005,1,0,55,421.77210545539856,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (25,), 'learning_rate': 'constant', 'max_iter': 5000, 'solver': 'adam'}
+005,2,0,59,638.8453495502472,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (25, 25), 'learning_rate': 'adaptive', 'max_iter': 50000, 'solver': 'sgd'}
+005,3,0,55,590.4863941669464,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (50, 25, 50), 'learning_rate': 'invscaling', 'max_iter': 20000, 'solver': 'sgd'}
+005,4,0,53,383.6234302520752,{'activation': 'tanh', 'alpha': 0.05, 'hidden_layer_sizes': (50, 25, 50), 'learning_rate': 'invscaling', 'max_iter': 10000, 'solver': 'sgd'}
+010,0,0,46,628.3890898227692,{'activation': 'relu', 'alpha': 0.0001, 'hidden_layer_sizes': (50, 50), 'learning_rate': 'invscaling', 'max_iter': 5000, 'solver': 'sgd'}
+010,1,0,46,600.1906759738922,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (25, 25), 'learning_rate': 'invscaling', 'max_iter': 50000, 'solver': 'sgd'}
+010,2,0,51,607.1077122688293,{'activation': 'relu', 'alpha': 0.05, 'hidden_layer_sizes': (25,), 'learning_rate': 'invscaling', 'max_iter': 10000, 'solver': 'sgd'}
+010,3,0,69,600.6048636436462,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (50, 50), 'learning_rate': 'adaptive', 'max_iter': 50000, 'solver': 'adam'}
+010,4,0,62,650.9976935386658,{'activation': 'tanh', 'alpha': 0.05, 'hidden_layer_sizes': (50, 50), 'learning_rate': 'invscaling', 'max_iter': 50000, 'solver': 'sgd'}
+015,0,0,48,655.4797360897064,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (50, 50), 'learning_rate': 'adaptive', 'max_iter': 10000, 'solver': 'sgd'}
+015,1,0,52,602.6771652698517,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (50,), 'learning_rate': 'invscaling', 'max_iter': 20000, 'solver': 'sgd'}
+015,2,0,69,603.0332970619202,{'activation': 'tanh', 'alpha': 0.05, 'hidden_layer_sizes': (25,), 'learning_rate': 'constant', 'max_iter': 50000, 'solver': 'sgd'}
+015,3,0,68,729.162840127945,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (50,), 'learning_rate': 'constant', 'max_iter': 5000, 'solver': 'sgd'}
+015,4,0,70,679.3894531726837,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (25, 25), 'learning_rate': 'constant', 'max_iter': 20000, 'solver': 'sgd'}
+020,0,0,68,637.0208561420441,{'activation': 'tanh', 'alpha': 0.05, 'hidden_layer_sizes': (25, 25), 'learning_rate': 'adaptive', 'max_iter': 5000, 'solver': 'sgd'}
+020,1,0,61,767.0064845085144,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (50, 25, 50), 'learning_rate': 'adaptive', 'max_iter': 10000, 'solver': 'sgd'}
+020,2,0,52,710.2053382396698,{'activation': 'tanh', 'alpha': 0.05, 'hidden_layer_sizes': (50, 50), 'learning_rate': 'invscaling', 'max_iter': 10000, 'solver': 'sgd'}
+020,3,0,72,711.0110883712769,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (25,), 'learning_rate': 'constant', 'max_iter': 5000, 'solver': 'sgd'}
+020,4,0,68,710.2705857753754,{'activation': 'logistic', 'alpha': 0.05, 'hidden_layer_sizes': (50, 25, 50), 'learning_rate': 'constant', 'max_iter': 5000, 'solver': 'adam'}
+030,0,0,66,711.0371191501617,{'activation': 'relu', 'alpha': 0.05, 'hidden_layer_sizes': (25,), 'learning_rate': 'constant', 'max_iter': 5000, 'solver': 'sgd'}
+030,1,0,69,768.8330883979797,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (25,), 'learning_rate': 'adaptive', 'max_iter': 5000, 'solver': 'sgd'}
+030,2,0,67,788.1180493831635,{'activation': 'logistic', 'alpha': 0.05, 'hidden_layer_sizes': (25,), 'learning_rate': 'invscaling', 'max_iter': 5000, 'solver': 'adam'}
+030,3,0,63,710.1959021091461,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (25, 25), 'learning_rate': 'adaptive', 'max_iter': 50000, 'solver': 'sgd'}
+030,4,0,50,833.0510656833649,{'activation': 'tanh', 'alpha': 0.05, 'hidden_layer_sizes': (50, 25, 50), 'learning_rate': 'invscaling', 'max_iter': 10000, 'solver': 'sgd'}
+060,0,0,69,1116.8893439769745,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (25, 25), 'learning_rate': 'adaptive', 'max_iter': 50000, 'solver': 'sgd'}
+060,1,0,66,1211.6368238925934,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (25,), 'learning_rate': 'invscaling', 'max_iter': 10000, 'solver': 'adam'}
+060,2,0,68,1099.9438076019287,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (25, 25), 'learning_rate': 'constant', 'max_iter': 10000, 'solver': 'sgd'}
+060,3,0,71,1181.0085093975067,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (25,), 'learning_rate': 'adaptive', 'max_iter': 5000, 'solver': 'sgd'}
+060,4,0,64,1205.4476766586304,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (25,), 'learning_rate': 'adaptive', 'max_iter': 5000, 'solver': 'sgd'}
+100,0,0,70,1649.8269636631012,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (50,), 'learning_rate': 'constant', 'max_iter': 5000, 'solver': 'sgd'}
+100,1,0,60,1642.889051437378,{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (50,), 'learning_rate': 'constant', 'max_iter': 50000, 'solver': 'sgd'}
+100,2,0,70,1636.2469396591187,{'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (50,), 'learning_rate': 'adaptive', 'max_iter': 20000, 'solver': 'sgd'}
+100,3,0,56,1604.6236743927002,{'activation': 'relu', 'alpha': 0.0001, 'hidden_layer_sizes': (50,), 'learning_rate': 'adaptive', 'max_iter': 5000, 'solver': 'sgd'}
+100,4,0,70,1663.8640427589417,{'activation': 'logistic', 'alpha': 0.05, 'hidden_layer_sizes': (50,), 'learning_rate': 'adaptive', 'max_iter': 5000, 'solver': 'sgd'}
