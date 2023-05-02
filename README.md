@@ -21,9 +21,17 @@ This study was a large undertaking and so the repository is quite dense. Here, w
 - ```extractERP.m```: This is a Matlab file (sorry, it's the only one!) that deals with Williams et al.'s (2021) preprocessed data. Each of their participants were kept in a .mat file and this file opens each up, extracts the needed information and saves it into a single csv file.
 
 <b>Evaluation</b>:
--```gansEEG_NeuralNetwork_Evaluation.py```: This file contains the code that ran the quantitative evaluations within the manuscript - specifically, the Train Synthetic, Test Real and the Train Real, Test Real analyses
+- ```gansEEG_NeuralNetwork_Evaluation.py```: This file contains the code that ran the quantitative evaluations within the manuscript - specifically, the Train Synthetic, Test Real and the Train Real, Test Real analyses
 
 <b>GANs</b>:
--<b>GAN Generated Data</b>: These are the GAN-generated artificial data created for each dataset.
--<b>GAN Models</b>: These are the trained GANs for each dataset.
--```gansTrainingRunsArray.sh```: This is a batch script to automatically train each GAN on the respective datasets.
+- <b>GAN Generated Data</b>: These are the GAN-generated artificial data created for each dataset.
+- <b>GAN Models</b>: These are the trained GANs for each dataset.
+- ```gansTrainingRunsArray.sh```: This is a batch script to automatically train each GAN on the respective datasets.
+
+<b>Modelling</b>:
+- <b>Classification Results</b>: This folder contains the classification performance outcome files.
+- <b>Models</b>: This folder contains scripts for each classifier (Neural Network, SVM, Logistic Regression), which was used to determine empirical and augmented performance across the seven sample sizes.
+
+<b>Plotting</b>:
+-<b>Figures</b>: This folder contains the manuscript figures.
+-<b>Script</b>: This folder contains the scripts used to create the manuscript figures.
