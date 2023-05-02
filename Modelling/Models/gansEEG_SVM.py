@@ -1,3 +1,6 @@
+#TODO: The synthetic average function names the conditions wrong - not a problem, but maybe confusing so fix (on all modelling scripts)
+#TODO: Filter seems to have the wrong sampling rate?
+
 #Modules
 import os
 import numpy as np
