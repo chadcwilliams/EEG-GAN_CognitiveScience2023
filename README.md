@@ -7,7 +7,7 @@
 
 The [EEG-GAN](https://autoresearch.github.io/EEG-GAN/) package was developed in conjunction with this manuscript; however, this repository is the evaluation of this package, rather than the package itself. As can be seen within the manuscript, we evaluated whether EEG-GAN can produce realistic EEG data and augment this EEG data to improve classification performance. The data used in this manuscript was drawn from [Williams et al.'s, 2021](https://onlinelibrary.wiley.com/doi/abs/10.1111/psyp.13722) open-source study.
 
-## Folder Breakdown
+## Folder and File Breakdown
 
 This study was a large undertaking and so the repository is quite dense. Here, we will break down each folder as a method of showing you our workflow. 
 
@@ -35,3 +35,12 @@ This study was a large undertaking and so the repository is quite dense. Here, w
 <b>Plotting</b>:
 - <b>Figures</b>: This folder contains the manuscript figures.
 - <b>Script</b>: This folder contains the scripts used to create the manuscript figures.
+
+## Workflow
+
+Next, we will discuss our workflow from extracting EEG data to achieving results. 
+
+<b>Step 1: Download the data</b>
+- Download the data from Williams et al.'s (2021) [open-source repository](https://osf.io/65x4v/). We used the files within <b>Open Data and Scripts</b> -> <b>Open Data</b> -> <b>Processed Data</b> folder. This folder contains ten zip files that we downloaded, unzipped, and merged into a single folder. 
+
+Step 2: Extract data from files</b>
