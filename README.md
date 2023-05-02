@@ -33,5 +33,5 @@ This study was a large undertaking and so the repository is quite dense. Here, w
 - <b>Models</b>: This folder contains scripts for each classifier (Neural Network, SVM, Logistic Regression), which was used to determine empirical and augmented performance across the seven sample sizes.
 
 <b>Plotting</b>:
--<b>Figures</b>: This folder contains the manuscript figures.
--<b>Script</b>: This folder contains the scripts used to create the manuscript figures.
+- <b>Figures</b>: This folder contains the manuscript figures.
+- <b>Script</b>: This folder contains the scripts used to create the manuscript figures.
