@@ -12,7 +12,7 @@ The [EEG-GAN](https://autoresearch.github.io/EEG-GAN/) package was developed in 
 This study was a large undertaking and so the repository is quite dense. Here, we will break down each folder as a method of showing you our workflow. 
 
 <b>Data</b>: 
-- <b>Plotting Datasets</b>: This folder contains a few datafiles used for plotting.
+- <b>Full Datasets</b>: This folder contains the pre-split datafiles .
 - <b>Training Datasets</b>: This folder contains all 35 datasets used in GAN training and classification analyses.
 - <b>Validation and Test Datasets</b>: This folder contains the validation and test datasets that were used to determine performance on all classifications.
 - ```gansEEG_ExtractSampleSizeData.py```: This file is used to split the full training dataset into the 35 different datasets within the <b>Training Datasets</b> folder.
@@ -41,6 +41,9 @@ This study was a large undertaking and so the repository is quite dense. Here, w
 Next, we will discuss our workflow from extracting EEG data to achieving results. 
 
 <b>Step 1: Download the data</b>
-- Download the data from Williams et al.'s (2021) [open-source repository](https://osf.io/65x4v/). We used the files within <b>Open Data and Scripts</b> -> <b>Open Data</b> -> <b>Processed Data</b> folder. This folder contains ten zip files that we downloaded, unzipped, and merged into a single folder. 
+- First, we downloaded the data from Williams et al.'s (2021) [open-source repository](https://osf.io/65x4v/). We used the files within the <b>Open Data and Scripts</b> -> <b>Open Data</b> -> <b>Processed Data</b> folder. This folder contains ten zip files that we downloaded, unzipped, and merged into a single folder. 
 
-Step 2: Extract data from files</b>
+<b>Step 2: Extract data from files</b>
+- Now that we had all .mat files in one place, we used the ```extractERP.m``` file to extract and concatenate trial-by-trial data for each participant. This results in a file ```ganTrialERP.csv``` (now housed in <b>Data</b> -> <b>Full Datasets</b>). 
+- We then downsampled the EEG data within this file to be 100 datapoints rather than 600 and named this new file ```ganTrialERP_len100.csv```. The script for this is actually absent from the repository, but used simple linear downsampling. 
+- TODO: The ```extractERP.m``` is the electrode version, replace with normal version.
