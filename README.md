@@ -17,5 +17,13 @@ This study was a large undertaking and so the repository is quite dense. Here, w
 - <b>Validation and Test Datasets</b>: This folder contains the validation and test datasets that were used to determine performance on all classifications.
 - ```gansEEG_ExtractSampleSizeData.py```: This file is used to split the full training dataset into the 35 different datasets within the <b>Training Datasets</b> folder.
 
-<b>EEG Processing</b>
--```extractERP.m```: This is a Matlab file (sorry, it's the only one!) that deals with Williams et al.'s (2021) preprocessed data. Each of their participants were kept in a .mat file and this file opens each up, extracts the needed information and saves it into a single csv file.
+<b>EEG Processing</b>:
+- ```extractERP.m```: This is a Matlab file (sorry, it's the only one!) that deals with Williams et al.'s (2021) preprocessed data. Each of their participants were kept in a .mat file and this file opens each up, extracts the needed information and saves it into a single csv file.
+
+<b>Evaluation</b>:
+-```gansEEG_NeuralNetwork_Evaluation.py```: This file contains the code that ran the quantitative evaluations within the manuscript - specifically, the Train Synthetic, Test Real and the Train Real, Test Real analyses
+
+<b>GANs</b>:
+-<b>GAN Generated Data</b>: These are the GAN-generated artificial data created for each dataset.
+-<b>GAN Models</b>: These are the trained GANs for each dataset.
+-```gansTrainingRunsArray.sh```: This is a batch script to automatically train each GAN on the respective datasets.
