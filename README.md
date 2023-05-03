@@ -47,3 +47,8 @@ Next, we will discuss our workflow from extracting EEG data to achieving results
 - Now that we had all .mat files in one place, we used the ```extractERP.m``` file to extract and concatenate trial-by-trial data for each participant. This results in a file ```ganTrialERP.csv``` (now housed in <b>Data</b> -> <b>Full Datasets</b>). 
 - We then downsampled the EEG data within this file to be 100 datapoints rather than 600 and named this new file ```ganTrialERP_len100.csv```. The script for this is actually absent from the repository, but used simple linear downsampling. 
 - TODO: The ```extractERP.m``` is the electrode version, replace with normal version.
+- TODO: The ganTrialERP.csv dataset is actually too large for GitHub, so host otherwise and say so...
+
+<b>Step 3: Split data into training, validation, and test sets </b>
+- We now have all participant trial-by-trial data in a csv file, but we want to split the data into a training set and a non-training set (which will be again split into a validation and test set in the next step). 
+- ```gansEEG_ExtractSampleSizeData.py``` (in the <b>Data</b> folder) first removed 400 participants (to later be split equally into validation and test sets). The resulting file is named ```gansTrialERP_len100_TestValidationData.csv``` and can be found within the <b>Data -> Validation and Test Datasets</b> folder. With the remaining 100 participants, it creates a series of new datasets with different sample sizes. This script actually splits the data into sample sizes of 5 to 100 in steps of 5, but only seven of these were used in the manuscript (5, 10, 15, 20, 30, 60, 100). It creates five sets of data for each sample size. These files can be found in the <b>Data -> Training Datasets</b> folder. 
