@@ -44,10 +44,7 @@ Next, we will discuss our workflow from extracting EEG data to achieving results
 - First, we downloaded the data from Williams et al.'s (2021) [open-source repository](https://osf.io/65x4v/). We used the files within the <b>Open Data and Scripts/Open Data/Processed Data</b> folder. This folder contains ten zip files that we downloaded, unzipped, and merged into a single folder. 
 
 <b>Step 2: Extract data from files</b>
-- Now that we had all .mat files in one place, we used the ```extractERP.m``` file to extract and concatenate trial-by-trial data for each participant. This results in a file ```ganTrialERP.csv``` (now housed in <b>Data/Full Datasets</b>). 
-- We then downsampled the EEG data within this file to be 100 datapoints rather than 600 and named this new file ```ganTrialERP_len100.csv```. The script for this is actually absent from the repository, but used simple linear downsampling. 
-- TODO: The ```extractERP.m``` is the electrode version, replace with normal version.
-- TODO: The ganTrialERP.csv dataset is actually too large for GitHub, so host otherwise and say so...
+- Now that we had all .mat files in one place, we used the ```extractERP.m``` file to extract, downsample, and concatenate trial-by-trial data for each participant. This results in a file ```ganTrialERP_len100.csv``` (now housed in <b>Data/Full Datasets</b>). 
 
 <b>Step 3: Split data into training, validation, and test sets </b>
 - We now have all participant trial-by-trial data in a csv file, but we want to split the data into a training set and a non-training set (which will be again split into a validation and test set in the next step). 
