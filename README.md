@@ -52,7 +52,7 @@ Next, we will discuss our workflow from extracting EEG data to achieving results
 <b>Step 3: Split data into training, validation, and test sets </b>
 - We now have all participant trial-by-trial data in a csv file, but we want to split the data into a training set and a non-training set (which will be again split into a validation and test set in the next step). 
 - ```gansEEG_ExtractSampleSizeData.py``` (in the <b>Data</b> folder) first removed 400 participants (to later be split equally into validation and test sets). The resulting file is named ```gansTrialERP_len100_TestValidationData.csv``` and can be found within the <b>Data/Validation and Test Datasets</b> folder. With the remaining 100 participants, it creates a series of new datasets with different sample sizes. This script actually splits the data into sample sizes of 5 to 100 in steps of 5, but only seven of these were used in the manuscript (5, 10, 15, 20, 30, 60, 100). It creates five sets of data for each sample size. These files can be found in the <b>Data/Training Datasets</b> folder. 
--TODO: The TestValidation file is named something different in the script. Probably should fix all paths and filenames in all scripts...
+- TODO: The TestValidation file is named something different in the script. Probably should fix all paths and filenames in all scripts...
 
 <b>Step 4: Split data into the test and validation datasets</b>
 - In the last step, we created a file ```gansTrialERP_len100_TestValidationData.csv``` that contains all test and validation data. We next need to split these into two equally sized data. The file for this is absent from the repo but follows the same procedure as lines 13-21 in ```gansEEG_ExtractSampleSizeData.py```
@@ -69,3 +69,7 @@ Next, we will discuss our workflow from extracting EEG data to achieving results
 - We ensured the GAN can learn to generate realistic EEG data using both qualitative and quantitative anaylses. For qualitative analyses, we created a series of plots comparing empirical versus synthetic data via the ```gansEEG_ProposalPlots.ipynb``` file within <b>Evaluations</b> folder. For quantitative analyses, we followed the Train Synthetic, Test Real approach as can be seen in the ```gansEEG_NeuralNetwork_Evaluation.py``` file within the <b>Evaluations</b> folder.
 
 <b>Step 8: Classification</b>
+- The main results include the classification of both empirical and augmented data within neural network, suppot vector machine, and logistic regression classifiers. These files can be found as ```gansEEG_NeuralNetwork.py```, ```gansEEG_SVM.py```, ```gansEEG_LogisticRegression```, respectively, within the <b>Modelling/Models</b> folder. Running these scripts will output classification results, which are stored within the <b>Modelling/Classification Results</b> folder. 
+
+<b>Step 9: Plot the classification</b>
+- The final step was to plot our classification results. The figures within the manuscript mostly stem from the evaluation procedure in Step 7, except for this final figure which is created via the ```gansEEG_CogSci_Classification.ipynb``` file within <b>Plotting</b>.
