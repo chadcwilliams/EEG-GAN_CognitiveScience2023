@@ -41,19 +41,31 @@ This study was a large undertaking and so the repository is quite dense. Here, w
 Next, we will discuss our workflow from extracting EEG data to achieving results. 
 
 <b>Step 1: Download the data</b>
-- First, we downloaded the data from Williams et al.'s (2021) [open-source repository](https://osf.io/65x4v/). We used the files within the <b>Open Data and Scripts</b> -> <b>Open Data</b> -> <b>Processed Data</b> folder. This folder contains ten zip files that we downloaded, unzipped, and merged into a single folder. 
+- First, we downloaded the data from Williams et al.'s (2021) [open-source repository](https://osf.io/65x4v/). We used the files within the <b>Open Data and Scripts/Open Data/Processed Data</b> folder. This folder contains ten zip files that we downloaded, unzipped, and merged into a single folder. 
 
 <b>Step 2: Extract data from files</b>
-- Now that we had all .mat files in one place, we used the ```extractERP.m``` file to extract and concatenate trial-by-trial data for each participant. This results in a file ```ganTrialERP.csv``` (now housed in <b>Data</b> -> <b>Full Datasets</b>). 
+- Now that we had all .mat files in one place, we used the ```extractERP.m``` file to extract and concatenate trial-by-trial data for each participant. This results in a file ```ganTrialERP.csv``` (now housed in <b>Data/Full Datasets</b>). 
 - We then downsampled the EEG data within this file to be 100 datapoints rather than 600 and named this new file ```ganTrialERP_len100.csv```. The script for this is actually absent from the repository, but used simple linear downsampling. 
 - TODO: The ```extractERP.m``` is the electrode version, replace with normal version.
 - TODO: The ganTrialERP.csv dataset is actually too large for GitHub, so host otherwise and say so...
 
 <b>Step 3: Split data into training, validation, and test sets </b>
 - We now have all participant trial-by-trial data in a csv file, but we want to split the data into a training set and a non-training set (which will be again split into a validation and test set in the next step). 
-- ```gansEEG_ExtractSampleSizeData.py``` (in the <b>Data</b> folder) first removed 400 participants (to later be split equally into validation and test sets). The resulting file is named ```gansTrialERP_len100_TestValidationData.csv``` and can be found within the <b>Data -> Validation and Test Datasets</b> folder. With the remaining 100 participants, it creates a series of new datasets with different sample sizes. This script actually splits the data into sample sizes of 5 to 100 in steps of 5, but only seven of these were used in the manuscript (5, 10, 15, 20, 30, 60, 100). It creates five sets of data for each sample size. These files can be found in the <b>Data -> Training Datasets</b> folder. 
+- ```gansEEG_ExtractSampleSizeData.py``` (in the <b>Data</b> folder) first removed 400 participants (to later be split equally into validation and test sets). The resulting file is named ```gansTrialERP_len100_TestValidationData.csv``` and can be found within the <b>Data/Validation and Test Datasets</b> folder. With the remaining 100 participants, it creates a series of new datasets with different sample sizes. This script actually splits the data into sample sizes of 5 to 100 in steps of 5, but only seven of these were used in the manuscript (5, 10, 15, 20, 30, 60, 100). It creates five sets of data for each sample size. These files can be found in the <b>Data/Training Datasets</b> folder. 
 -TODO: The TestValidation file is named something different in the script. Probably should fix all paths and filenames in all scripts...
 
 <b>Step 4: Split data into the test and validation datasets</b>
 - In the last step, we created a file ```gansTrialERP_len100_TestValidationData.csv``` that contains all test and validation data. We next need to split these into two equally sized data. The file for this is absent from the repo but follows the same procedure as lines 13-21 in ```gansEEG_ExtractSampleSizeData.py```
 - TODO: Find this file I guess
+
+<b>Step 5: Train the GANs</b>
+- Next, we needed to train our GANs. We trained a single GAN on the full dataset with all participants ```gansTrialERP_len100.csv``` for our evaluations and then trained a GAN for each of our 35 datasets. We did this by running the gan training file via terminal. As we were using a super computer for this, we set up batch job to do this, specifically the ```gansTrainingRunsArray.sh``` file in the <b>GANs</b> folder. In the last line of this file you can see the training parameters we used, and the batch job simply iterates through all of our training files one at a time. 
+
+<b>Step 6: Generate samples</b>
+- We then generated samples for each of the GANs trained in the previous step. We did this using terminal commands manually, so have no batch file this time. The generated samples of the GAN that was trained for evaluation (thus on all data) can be found as ```sd_len100_30000ep.csv``` within the <b>GANs/GAN Generated Data</b> folder. The remainder of the files in this folder are the samples generated for each of the training datasets.
+- TODO: Rename the main file here
+
+<b>Step 7: Evaluation</b>
+- We ensured the GAN can learn to generate realistic EEG data using both qualitative and quantitative anaylses. For qualitative analyses, we created a series of plots comparing empirical versus synthetic data via the ```gansEEG_ProposalPlots.ipynb``` file within <b>Evaluations</b> folder. For quantitative analyses, we followed the Train Synthetic, Test Real approach as can be seen in the ```gansEEG_NeuralNetwork_Evaluation.py``` file within the <b>Evaluations</b> folder.
+
+<b>Step 8: Classification</b>

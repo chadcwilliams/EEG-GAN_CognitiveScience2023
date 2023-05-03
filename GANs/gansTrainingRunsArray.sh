@@ -30,4 +30,4 @@ module load cuda/8.0.61
 source ./venv/bin/activate
 
 dataFile="`sed -n ${SLURM_ARRAY_TASK_ID}p gansTrainingFiles.txt`"
-python gan_training_main.py ddp filter_generator path_dataset="${dataFile}" n_epochs=1000
+python gan_training_main.py ddp filter_generator path_dataset="${dataFile}" n_epochs=8000
