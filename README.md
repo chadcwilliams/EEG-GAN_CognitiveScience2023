@@ -1,6 +1,6 @@
 # Augmenting EEG with Generative Adversarial Networks Enhances Brain Decoding Across Classifiers and Sample Sizes
-Williams*, Weinhardt*, Wirzberger, & Musslick 
-2023, Cognitive Science
+Williams*, Weinhardt*, Wirzberger, & Musslick<br>
+2023, Cognitive Science<br>
 *Co-First Authors 
 
 ## Evaluation of the EEG-GAN Package
