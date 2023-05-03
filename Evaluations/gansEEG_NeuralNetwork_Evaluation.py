@@ -2,18 +2,14 @@
 ####Modules
 ###################################################################
 
-import os
 import numpy as np
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import scale
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import classification_report
 from scipy import signal
-from scipy.interpolate import interp1d
 import scipy
 import random as rnd
-from IPython.display import clear_output
-import time
 
 ###################################################################
 ####User Inputs
@@ -22,7 +18,7 @@ import time
 features = False
 validationOrTest = 'test'
 evaluationApproach = 'TRTR' #TSTR, [TRTS], TRTR, [TSTS]
-saveFilename = 'evaluationPredictions_GridSearch_TestClassification.csv'
+saveFilename = 'TESTevaluationPredictions_GridSearch_TestClassification.csv'
 
 print('Validation or Test: ' + validationOrTest)
 print('Evaluation Approach: ' + evaluationApproach)
@@ -57,19 +53,7 @@ def baselineCorrect(EEG):
 
     return baselinedEEG
 
-#Define Resample Function
-def resampleEEG(EEG):
-    #Define function
-    def interpolateArray(EEGTrial):
-        interpModel = interp1d(np.arange(1,101), EEGTrial, fill_value='extrapolate')
-        resampledEEG = interpModel(np.arange(1,101,100/600))
-        return resampledEEG
-
-    #Process
-    resampleEEG = [interpolateArray(EEG[trial]) for trial in range(len(EEG))]
-
-    return resampleEEG
-
+#Define ERP Extraction Function
 def extractERP(EEG):
     #Time of interest (ms)
     startTime = 264
@@ -85,11 +69,12 @@ def extractERP(EEG):
 
     return np.array(extractedERP)
 
+#Define FFT Extraction Function
 def extractFFT(EEG):
     
     def runFFT(EEG):
         numberDataPoints = len(EEG) #Determine how many datapoints will be transformed per trial and channel
-        SR = 83.3333
+        SR = 83.3333 #This is because the original data was 600 datapoints at 500Hz and we downsampled to 100 datapoints
         frequencyResolution = SR/numberDataPoints #Determine frequency resolution
         fftFrequencies = np.arange(frequencyResolution,(SR/2),frequencyResolution) #Determine array of frequencies
 
@@ -114,12 +99,14 @@ def extractFFT(EEG):
     fftFeatures = [runFFT(EEG[trial,:]) for trial in range(len(EEG))]
     return np.array(fftFeatures)
 
+#Define a feature extraction function
 def extractFeatures(EEG):
     erpFeatures = extractERP(EEG)
     fftFeatures = extractFFT(EEG)
     eegFeatures = np.transpose(np.vstack((erpFeatures,np.transpose(fftFeatures))))
     return eegFeatures
 
+#Define the average data function for synthetic data
 def averageSynthetic(synData):
     samplesToAverage = 50
 
@@ -136,6 +123,7 @@ def averageSynthetic(synData):
     
     return avgSynData
 
+#Define the average data function for empirical data
 def averageEEG(EEG):
     participants = np.unique(EEG[:,0])
     averagedEEG = []
@@ -150,7 +138,7 @@ def averageEEG(EEG):
 
 #Train Real:
 if (evaluationApproach == 'TRTS') | (evaluationApproach == 'TRTR'):
-    EEGData = np.genfromtxt('data/training_data/Runs/gansTrialERP_len100_SS100_Run00.csv', delimiter=',', skip_header=1)
+    EEGData = np.genfromtxt('../Data/Training Datasets/gansTrialERP_len100_SS100_Run00.csv', delimiter=',', skip_header=1)
     EEGData = averageEEG(EEGData)[:,1:]
     Y_train = EEGData[:,0]
     if features:
@@ -162,7 +150,7 @@ if (evaluationApproach == 'TRTS') | (evaluationApproach == 'TRTR'):
 
 #Train Synthetic
 elif (evaluationApproach == 'TSTR') | (evaluationApproach == 'TSTS'):
-    EEGData = np.genfromtxt('generated_samples/filtered_checkpoint_SS100_Run00_nepochs8000.csv', delimiter=',', skip_header=1)
+    EEGData = np.genfromtxt('../GANs/GAN Generated Data/filtered_checkpoint_SS100_Run00_nepochs8000.csv', delimiter=',', skip_header=1)
     tempEEGData = filterSyntheticEEG(EEGData[:,1:]) 
     tempEEGData = baselineCorrect(tempEEGData)
     
@@ -193,9 +181,9 @@ Y_train = Y_train[trainShuffle]
 #Test Real:
 if (evaluationApproach == 'TSTR') | (evaluationApproach == 'TRTR'):
     if validationOrTest == 'validation':
-        EEGDataTest = np.genfromtxt('data/training_data/gansTrialERP_len100_ValidationData.csv', delimiter=',', skip_header=1)
+        EEGDataTest = np.genfromtxt('../Data/Validation and Test Datasets/gansTrialERP_len100_ValidationData.csv', delimiter=',', skip_header=1)
     else:
-        EEGDataTest = np.genfromtxt('data/training_data/gansTrialERP_len100_TestData.csv', delimiter=',', skip_header=1)
+        EEGDataTest = np.genfromtxt('../Data/Validation and Test Datasets/gansTrialERP_len100_TestData.csv', delimiter=',', skip_header=1)
     
     EEGDataTest = averageEEG(EEGDataTest)[:,1:]
     y_test = EEGDataTest[:,0]
@@ -211,11 +199,11 @@ elif (evaluationApproach == 'TRTS') | (evaluationApproach == 'TSTS'):
     if validationOrTest == 'validation':
         ## ADD SYNTHETIC TEST/VALIDATION SET HERE
         #EEGDataTest = 
-        print('Unsupported, working on it!')
+        print('Currently unsupported.')
     else:
         ## ADD SYNTHETIC TEST/VALIDATION SET HERE
         #EEGDataTest = 
-        print('Unsupported, working on it!')
+        print('Currently unsupported.')
 
 #Error Message
 else:
@@ -260,6 +248,7 @@ for run in range(100):
     predictResults = classification_report(y_true, y_pred, output_dict=True)
     predictScore = round(predictResults['accuracy']*100)
 
+    #Append file with results
     f = open(saveFilename, 'a')
     toWrite = [evaluationApproach,str(run),str(predictScore),optimal_params.best_params_]
     for currentWrite in toWrite:
