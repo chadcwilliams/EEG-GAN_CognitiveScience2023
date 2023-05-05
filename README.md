@@ -30,7 +30,7 @@ This study was a large undertaking and so the repository is quite dense. Here, w
 
 <b>Modelling</b>:
 - <b>Classification Results</b>: This folder contains the classification performance outcome files.
-- <b>Models</b>: This folder contains scripts for each classifier (Neural Network, SVM, Logistic Regression), which was used to determine empirical and augmented performance across the seven sample sizes.
+- <b>Models</b>: This folder contains a script for the classifications (Neural Network, SVM, Logistic Regression), which was used to determine empirical and augmented performance across the seven sample sizes.
 
 <b>Plotting</b>:
 - <b>Figures</b>: This folder contains the manuscript figures.
@@ -66,7 +66,7 @@ Next, we will discuss our workflow from extracting EEG data to achieving results
 - We ensured the GAN can learn to generate realistic EEG data using both qualitative and quantitative anaylses. For qualitative analyses, we created a series of plots comparing empirical versus synthetic data via the ```gansEEG_ProposalPlots.ipynb``` file within <b>Evaluations</b> folder. For quantitative analyses, we followed the Train Synthetic, Test Real approach as can be seen in the ```gansEEG_NeuralNetwork_Evaluation.py``` file within the <b>Evaluations</b> folder.
 
 <b>Step 8: Classification</b>
-- The main findings of our study are the classifications of both empirical and augmented data within neural network, suppot vector machine, and logistic regression classifiers. These files can be found as ```gansEEG_NeuralNetwork.py```, ```gansEEG_SVM.py```, ```gansEEG_LogisticRegression```, respectively, within the <b>Modelling/Models</b> folder. These scripts outputted classification results, which are stored within the <b>Modelling/Classification Results</b> folder. 
+- The main findings of our study are the classifications of both empirical and augmented data within neural network, suppot vector machine, and logistic regression classifiers. These analyses were conducted via the ```gansEEG_Classification.py``` file within the <b>Modelling/Models</b> folder. This script outputted classification results, which are stored within the <b>Modelling/Classification Results</b> folder. 
 
 <b>Step 9: Plot the classification</b>
 - The final step was to plot our classification results. The figures within the manuscript mostly stem from the evaluation procedure in Step 7, except for this final figure which is created via the ```gansEEG_ClassificationPlot.ipynb``` file within <b>Plotting</b>.
