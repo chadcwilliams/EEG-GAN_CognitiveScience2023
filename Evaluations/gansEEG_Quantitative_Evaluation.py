@@ -1,7 +1,6 @@
-###################################################################
-####Modules
-###################################################################
-
+###############################################
+## IMPORT MODULES                            ##
+###############################################
 import numpy as np
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import scale
@@ -11,10 +10,9 @@ from scipy import signal
 import scipy
 import random as rnd
 
-###################################################################
-####User Inputs
-###################################################################
-
+###############################################
+## USER INPUTS                               ##
+###############################################
 features = False
 validationOrTest = 'test'
 evaluationApproach = 'TRTR' #TSTR, [TRTS], TRTR, [TSTS]
@@ -24,9 +22,9 @@ print('Validation or Test: ' + validationOrTest)
 print('Evaluation Approach: ' + evaluationApproach)
 print('Save Filename: ' + saveFilename)
 
-###################################################################
-####Functions 
-###################################################################
+###############################################
+## FUNCTIONS                                 ##
+###############################################
 
 #Define Filter Function
 def filterSyntheticEEG(EEG):
@@ -132,9 +130,9 @@ def averageEEG(EEG):
             averagedEEG.append(np.mean(EEG[(EEG[:,0]==participant)&(EEG[:,1]==condition),:], axis=0))
     return np.array(averagedEEG)
 
-###################################################################
-####Load Train Data
-###################################################################
+###############################################
+## LOAD TRAINING DATA                        ##
+###############################################
 
 #Train Real:
 if (evaluationApproach == 'TRTS') | (evaluationApproach == 'TRTR'):
@@ -174,9 +172,9 @@ trainShuffle = rnd.sample(range(len(X_train)),len(X_train))
 X_train = X_train[trainShuffle,:]
 Y_train = Y_train[trainShuffle]
 
-###################################################################
-####Load Test Data
-###################################################################
+###############################################
+## LOAD TEST SET                             ##
+###############################################
 
 #Test Real:
 if (evaluationApproach == 'TSTR') | (evaluationApproach == 'TRTR'):
@@ -209,9 +207,9 @@ elif (evaluationApproach == 'TRTS') | (evaluationApproach == 'TSTS'):
 else:
     print('Test set unsupported')
 
-###################################################################
-####Run Classifier
-###################################################################
+###############################################
+## RUN CLASSIFIER                            ##
+###############################################
 for run in range(100):
     print('Run: ' + str(run))
 

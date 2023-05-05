@@ -1,14 +1,28 @@
-#Import Modules
+###############################################
+## IMPORT MODULES                            ##
+###############################################
 import numpy as np
 import random as rnd
+
+###############################################
+## SETUP                                     ##
+###############################################
 
 #Set seeds for reproducibility
 np.random.seed(1251)
 rnd.seed(1251)
 
+###############################################
+## LOAD DATA                                 ##
+###############################################
+
 #Load EEG data
 EEGData = np.genfromtxt('Full Datasets/ganTrialERP_len100.csv', delimiter=',', skip_header=1)
 EEGDataHeader = np.genfromtxt('Full Datasets/ganTrialERP_len100.csv', delimiter=',', names=True).dtype.names
+
+###############################################
+## EXTRACT VALIDATION/TEST DATASETS          ##
+###############################################
 
 #Create test file of 400 participants
 testParticipants = np.sort(rnd.sample(range(1,int(np.unique(EEGData[:,0])[-1])+1), 400))
@@ -24,6 +38,10 @@ for participant in testParticipants:
 saveFilename = 'Validation and Test Datasets/gansTrialERP_len100_TestValidationData.csv'
 np.savetxt(saveFilename, testEEGData, delimiter=",", fmt='%f', header=','.join(EEGDataHeader), comments='')
     
+###############################################
+## EXTRACT TRAINING DATASETS                 ##
+###############################################
+
 #Iterate through different sample sizes to save data
 for sampleSize in [5, 10, 15, 20, 30, 60, 100]:
     for run in range(5):

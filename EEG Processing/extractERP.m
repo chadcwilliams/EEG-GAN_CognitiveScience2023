@@ -1,6 +1,13 @@
-%User inputs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% USER INPUTS                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 downsampledLength = 100; %Datapoints to downsample data to
 electrode = 'FCz';
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LOAD AND SAVE PARTICIPANT DATA            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% This first loop will extract the data for each participant and save data as a participant specific csv file
 
@@ -81,6 +88,10 @@ for participant = 1:length(filenames)
     %Save each participant data as a csv file (these will later be deleted)
     writetable(thisDataTable,['ganTrialElectrodeERP_', pNum,'.csv'],'Delimiter',',');
 end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COMBINE PARTICIPANT DATASETS              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% We will next combine all participant level data into a single file
 
