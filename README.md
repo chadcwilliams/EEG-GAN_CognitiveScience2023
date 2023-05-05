@@ -32,7 +32,7 @@ This study was a large undertaking and so the repository is quite dense. Here, w
 <b>Modelling</b>:
 - <b>Classification Results</b>: This folder contains the classification performance outcome files.
 - ```gansEEG_Classification.py```: This script runs the classifications (Neural Network, SVM, Logistic Regression), which was used to determine empirical and augmented performance across the seven sample sizes.
-- ```gansEEG_ClassificationPlot.ipynb```: This script creates the classification plot
+- ```gansEEG_ClassificationPlot.ipynb```: This script creates the classification plot.
 
 ## Workflow
 
@@ -50,11 +50,10 @@ Next, we will discuss our workflow from extracting EEG data to achieving results
 
 <b>Step 4: Split data into the test and validation datasets</b>
 - In the last step, we created a file ```gansTrialERP_len100_TestValidationData.csv``` that contains all test and validation data. We next need to split these into two equally sized data. The file for this is absent from the repo but follows the same procedure as lines 13-21 in ```gansEEG_ExtractSampleSizeData.py```
-- TODO: Find this file I guess (Note to self: is it just split in half? so the first half is one file and the second another)
 
 <b>Step 5: Train the GANs</b>
 - Next, we needed to train our GANs. We trained a single GAN on the full dataset with all participants ```gansTrialERP_len100.csv``` for our evaluations and then trained a GAN for each of our 35 training datasets. We did this by running the gan training file via terminal. As we were using a super computer for this, we set up batch job, specifically the ```gansTrainingRunsArray.sh``` file in the <b>GANs</b> folder. In the last line of this file you can see the training parameters we used, and the batch job simply iterates through all of our training files one at a time. 
-- <i>Note that the EEG-GAN package requires a specific folder structure - it requires <b>data</b>, <b>trained_models</b>, and </b>generated_samples</b> folders. So, this step required that we moved our data being trained into a folder named data. This folder does not exist in the current repo, but would be an extra step required for replication of our study</i>
+- <i>Note that the EEG-GAN package requires a specific folder structure - it requires <b>data</b>, <b>trained_models</b>, and <b>generated_samples</b> folders. So, this step required that we moved our data being trained into a folder named data. This folder does not exist in the current repo, but would be an extra step required for replication of our study</i>
 
 <b>Step 6: Generate samples</b>
 - We then generated samples for each of the GANs trained in the previous step. We did this using terminal commands manually, so have no batch file this time. The generated samples of the GAN that was trained for evaluation (thus on all data) can be found as ```sd_len100_30000ep.csv``` within the <b>GANs/GAN Generated Data</b> folder. The remainder of the files in this folder are the samples generated for each of the training datasets.
