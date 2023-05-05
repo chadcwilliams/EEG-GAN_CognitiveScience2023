@@ -28,8 +28,8 @@ classifiers = ['NN', 'SVM', 'LR'] #The code will iterate through this list
 ###############################################
 
 #Base save file names
-augFilename = '../Classification Results/augmentedPredictions_XX_SynP050_Runs8000_Filtered.csv'
-empFilename = '../Classification Results/empiricalPredictions_XX_Runs8000.csv'
+augFilename = 'Classification Results/augmentedPredictions_XX_SynP050_Runs8000_Filtered.csv'
+empFilename = 'Classification Results/empiricalPredictions_XX_Runs8000.csv'
 
 #Add features tag if applied
 if features:
@@ -290,9 +290,9 @@ def logisticRegression(X_train, Y_train, x_test, y_test):
 
 #Load data 
 if validationOrTest == 'validation':
-    EEGDataTest = np.genfromtxt('../../Data/Validation and Test Datasets/gansTrialERP_len100_ValidationData.csv', delimiter=',', skip_header=1)
+    EEGDataTest = np.genfromtxt('../Data/Validation and Test Datasets/gansTrialERP_len100_ValidationData.csv', delimiter=',', skip_header=1)
 else:
-    EEGDataTest = np.genfromtxt('../../Data/Validation and Test Datasets/gansTrialERP_len100_TestData.csv', delimiter=',', skip_header=1)
+    EEGDataTest = np.genfromtxt('../Data/Validation and Test Datasets/gansTrialERP_len100_TestData.csv', delimiter=',', skip_header=1)
 
 #Average data
 EEGDataTest = averageEEG(EEGDataTest)[:,1:]
@@ -334,7 +334,7 @@ for classifier in classifiers: #Iterate through classifiers (neural network, sup
                 if addSyntheticData:
                     
                     #Load Synthetic Data
-                    synFilename = '../../GANs/GAN Generated Data/filtered_checkpoint_SS' + dataSampleSize + '_Run' + str(run).zfill(2) + '_nepochs8000'+'.csv'
+                    synFilename = '../GANs/GAN Generated Data/filtered_checkpoint_SS' + dataSampleSize + '_Run' + str(run).zfill(2) + '_nepochs8000'+'.csv'
                     synData = np.genfromtxt(synFilename, delimiter=',', skip_header=1)
                     synData = cutData(synData)
                     
@@ -366,7 +366,7 @@ for classifier in classifiers: #Iterate through classifiers (neural network, sup
                 ###############################################
                 
                 #Load empirical data
-                tempFilename = '../../Data/Training Datasets/gansTrialERP_len100_SS'+dataSampleSize+ '_Run' + str(run).zfill(2) +'.csv'
+                tempFilename = '../Data/Training Datasets/gansTrialERP_len100_SS'+dataSampleSize+ '_Run' + str(run).zfill(2) +'.csv'
                 EEGData = np.genfromtxt(tempFilename, delimiter=',', skip_header=1)#[:,1:]
                 
                 #Average data per participant and condition
