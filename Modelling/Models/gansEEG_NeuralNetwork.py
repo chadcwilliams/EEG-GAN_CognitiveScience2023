@@ -16,7 +16,7 @@ import time
 ## USER INPUTS                               ##
 ###############################################
 features = True #Datatype: False = Full Data, True = Features data
-validationOrTest = 'test' #Validation or test set to predict
+validationOrTest = 'test' #'validation' or 'test' set to predict
 dataSampleSizes = ['005','010','015','020','030','060','100'] #Which sample sizes to include
 syntheticDataOptions = [0, 1] #The code will iterate through this list. 0 = empirical classifications, 1 = augmented classifications
 
@@ -222,8 +222,7 @@ for addSyntheticData in syntheticDataOptions: #Iterate through analyses (empiric
         f = open(empFilename, 'a')
             
     for dataSampleSize in dataSampleSizes: #Iterate through sample sizes   
-        #for run in range(5): #Conduct analyses 5 times per sample size
-        for run in range(1): #THE COMMENTED LINE ABOVE IS WHAT YOU WANT, IF THIS LINE IS STILL HERE, IT WAS LEFT BY ACCIDENT
+        for run in range(5): #Conduct analyses 5 times per sample size
             
             ###############################################
             ## SYNTHETIC PROCESSING                      ##
@@ -231,29 +230,22 @@ for addSyntheticData in syntheticDataOptions: #Iterate through analyses (empiric
             if addSyntheticData:
                 
                 #Load Synthetic Data
-                print('Loading Synthetic Data...')
                 synFilename = '../../GANs/GAN Generated Data/filtered_checkpoint_SS' + dataSampleSize + '_Run' + str(run).zfill(2) + '_nepochs8000'+'.csv'
                 synData = np.genfromtxt(synFilename, delimiter=',', skip_header=1)
-                print('Synthetic Data Loaded!')
                 synData = cutData(synData)
                 
                 #Extract outcome data
                 synOutcomes = synData[:,0]
 
                 #Process synthetic data
-                print('Filtering Synthetic Data...')
                 processedSynData = filterSyntheticEEG(synData[:,1:]) 
-                print('Baseline Correcting Synthetic Data...')
                 processedSynData = baselineCorrect(processedSynData)
-                print('Synthetic Data Processed!')
 
                 #Create new array for processed synthetic data
                 processedSynData = np.insert(np.asarray(processedSynData),0,synOutcomes, axis = 1)
 
                 #Average data across trials
-                print('Averaging Synthetic Data...')
                 processedSynData = averageSynthetic(processedSynData)
-                print('Done Averaging Synthetic Data!')
                 
                 #Extract outcome and feature data
                 synOutomes = processedSynData[:,0] #Extract outcome
@@ -303,7 +295,7 @@ for addSyntheticData in syntheticDataOptions: #Iterate through analyses (empiric
 
             #Report current analyses
             clear_output(wait=True)
-            print('Analysis: ' + 'Augmented' if addSyntheticData else 'Empirical')
+            print('Augmented' if addSyntheticData else 'Empirical')
             print('Sample Size: ' + str(int(dataSampleSize)))
             print('Run: ' + str(run))
          
